@@ -89,7 +89,9 @@ def save_transcription(result, output_file):
         output_file (str): Path to save the transcription
     """
     # Create output directory if it doesn't exist
-    os.makedirs(os.path.dirname(output_file) or '.', exist_ok=True)
+    output_dir = os.path.dirname(output_file)
+    if output_dir:
+        os.makedirs(output_dir, exist_ok=True)
     
     with open(output_file, 'w', encoding='utf-8') as f:
         f.write(result['text'])
